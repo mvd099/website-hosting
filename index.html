@@ -289,8 +289,8 @@ if ('serviceWorker' in navigator) {
                 const marketCloseHour = 16; // 4 PM EST
 
                 const now = new Date();
-                const marketOpenTimeUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), marketOpenHour + 5, marketOpenMinute)); // Convert NYSE opening (UTC-5)
-                const marketCloseTimeUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), marketCloseHour + 5, 0)); // Convert NYSE closing (UTC-5)
+                const marketOpenTimeUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), marketOpenHour + 1, marketOpenMinute)); // Convert NYSE opening (UTC-5)
+                const marketCloseTimeUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), marketCloseHour + 1, 0)); // Convert NYSE closing (UTC-5)
 
                 // If the market is currently open
                 if (now >= marketOpenTimeUTC && now < marketCloseTimeUTC) {
@@ -387,7 +387,7 @@ if ('serviceWorker' in navigator) {
         </div>
         <div class="x-el x-el-div c1-1 c1-2 c1-5b c1-b c1-c c1-d c1-e c1-f c1-g" data-ux="Block">
          <div class="x-el c1-1 c1-2 c1-2p c1-2e c1-60 c1-23 c1-25 c1-2w c1-61 c1-62 c1-63 c1-64 c1-b c1-5g c1-65 c1-4h c1-66 c1-67 c1-68 c1-69 x-rt" data-aid="HEADER_TAGLINE2_RENDERED" data-typography="BodyBeta" data-ux="HeroText">
-          <p style="margin:0">
+          <p><style> font-size: 1.2em;</style>
             Invest towards your financial freedom!
           </p>
          
