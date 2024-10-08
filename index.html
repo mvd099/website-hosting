@@ -111,6 +111,23 @@ if ('serviceWorker' in navigator) {
   <style id="dynamic-tagline-48585-style">
    #dynamic-tagline-48585 { font-size: 64px !important; }
   </style>
+ <style>
+   #timer {
+            font-size: 1.2em; /* Reduced font size */
+            background-color: #000; /* Black background */
+            padding: 3px 8px; /* Reduced padding */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+            display: inline-block; /* Aligns the timer inline with text */
+            margin-left: 8px; /* Spacing from the text */
+        }
+        .countdown { 
+            color: red; /* Red color for the countdown numbers */
+        }
+        .market-open {
+            color: green; /* Green color for "NYSE OPEN" */
+        }
+</style>
   <script crossorigin="Anonymous" src="./TugaStreetBets -unaltered_files/bs-layout13-Theme-publish-Theme-96064f33.js.transferir">
   </script>
   <script crossorigin="Anonymous" src="./TugaStreetBets -unaltered_files/bs-_rollupPluginBabelHelpers-5804ec33.js.transferir">
@@ -165,6 +182,7 @@ if ('serviceWorker' in navigator) {
   </script>
  </head>
  <body class="x x-fonts-league-spartan">
+ 
   <img alt="impression" onerror="this.style.display='none'" role="presentation" src="./TugaStreetBets -unaltered_files/i.gif"/>
   <section class="x-el x-el-section c1-1 c1-2 c1-h c1-i c1-j c1-k c1-l c1-b c1-c c1-m c1-n c1-d c1-e c1-f c1-g" data-aid="HEADER_SECTION" data-ux="Section">
    <div class="x-el x-el-div c1-1 c1-2 c1-o c1-p c1-b c1-c c1-d c1-e c1-f c1-g" data-ux="HeaderMedia">
@@ -256,10 +274,51 @@ if ('serviceWorker' in navigator) {
         <div class="x-el x-el-div c1-1 c1-2 c1-5b c1-b c1-c c1-d c1-e c1-f c1-g" data-ux="Block">
          <div class="x-el c1-1 c1-2 c1-2p c1-2e c1-60 c1-23 c1-25 c1-2w c1-61 c1-62 c1-63 c1-64 c1-b c1-5g c1-65 c1-4h c1-66 c1-67 c1-68 c1-69 x-rt" data-aid="HEADER_TAGLINE2_RENDERED" data-typography="BodyBeta" data-ux="HeroText">
           <p style="margin:0">
-           <span>
-            Invest towards your financial freedom
-           </span>
+            Invest towards your financial freedom in<span id="timer" class="countdown"></span>
           </p>
+          <script>
+            let timerInterval;
+
+            function updateTimer() {
+                const marketOpenHour = 9; // 9 AM EST
+                const marketOpenMinute = 30; // 30 minutes
+                const marketCloseHour = 16; // 4 PM EST
+
+                const now = new Date();
+                const marketOpenTimeUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), marketOpenHour + 5, marketOpenMinute)); // Convert NYSE opening (UTC-5)
+                const marketCloseTimeUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), marketCloseHour + 5, 0)); // Convert NYSE closing (UTC-5)
+
+                // If the market is currently open
+                if (now >= marketOpenTimeUTC && now < marketCloseTimeUTC) {
+                    clearInterval(timerInterval); // Stop the countdown
+                    document.getElementById('timer').className = 'market-open'; // Change class to "market-open"
+                    document.getElementById('timer').innerHTML = "NYSE OPEN";
+                }
+                // If the market is closed, show countdown to next opening
+                else {
+                    // Check if it's past the closing time for today, start the countdown for the next day
+                    if (now > marketCloseTimeUTC) {
+                        marketOpenTimeUTC.setUTCDate(marketOpenTimeUTC.getUTCDate() + 1); // Set for tomorrow's opening
+                    }
+
+                    const timeDifference = marketOpenTimeUTC - now;
+
+                    const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+                    document.getElementById('timer').className = 'countdown'; // Change class back to "countdown"
+                    document.getElementById('timer').innerHTML = `${hours}h ${minutes}m ${seconds}s`;
+                }
+            }
+
+            // Start the timer and update every second
+            timerInterval = setInterval(updateTimer, 1000);
+            updateTimer(); // Initial call to display the timer immediately
+        </script>
+   
+</body>
+</html>
          </div>
         </div>
         <div class="x-el x-el-div c1-1 c1-2 c1-6g c1-6h c1-b c1-c c1-d c1-e c1-f c1-g" data-ux="Block">
@@ -296,6 +355,7 @@ if ('serviceWorker' in navigator) {
            <a class="x-el x-el-a c1-4d c1-4e c1-2r c1-6n c1-6o c1-r c1-2d c1-2c c1-2o c1-2e c1-2p c1-o c1-2w c1-4 c1-6p c1-6q c1-1t c1-1u c1-6r c1-6s c1-5g c1-6t c1-b c1-6b c1-z c1-4g c1-6u c1-6v c1-4k c1-4l c1-4m c1-4n" color="PRIMARY" data-aid="HEADER_CTA_BTN" data-tccl="ux2.header.cta_button.click,click" data-typography="ButtonAlpha" data-ux="ButtonPrimary" data-ux-btn="primary" decoration="NONE" fill="SOLID" href="https://discord.gg/VVdjj5e2yk" rel="noopener" shadow="NONE" shape="PILL" target="_blank">
             Discord
            </a>
+          
           </div>
          </div>
         </div>
@@ -324,10 +384,9 @@ if ('serviceWorker' in navigator) {
         <div class="x-el x-el-div c1-1 c1-2 c1-5b c1-b c1-c c1-d c1-e c1-f c1-g" data-ux="Block">
          <div class="x-el c1-1 c1-2 c1-2p c1-2e c1-60 c1-23 c1-25 c1-2w c1-61 c1-62 c1-63 c1-64 c1-b c1-5g c1-65 c1-4h c1-66 c1-67 c1-68 c1-69 x-rt" data-aid="HEADER_TAGLINE2_RENDERED" data-typography="BodyBeta" data-ux="HeroText">
           <p style="margin:0">
-           <span>
-            Invest towards your financial freedom
-           </span>
+            Invest towards your financial freedom!
           </p>
+         
          </div>
         </div>
         <div class="x-el x-el-div c1-1 c1-2 c1-6g c1-6h c1-b c1-c c1-d c1-e c1-f c1-g" data-ux="Block">
