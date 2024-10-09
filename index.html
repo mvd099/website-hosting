@@ -280,45 +280,45 @@ if ('serviceWorker' in navigator) {
           <p style="margin:0">
             Invest towards your financial freedom in<span id="timer" class="countdown"></span>
           </p>
-          <script>
-            let timerInterval;
+        <script>
+          let timerInterval;
 
-            function updateTimer() {
-                const marketOpenHour = 9; // 9 AM EST
-                const marketOpenMinute = 30; // 30 minutes
-                const marketCloseHour = 16; // 4 PM EST
+          function updateTimer() {
+              const marketOpenHour = 9; // 9 AM EST
+              const marketOpenMinute = 30; // 30 minutes
+              const marketCloseHour = 16; // 4 PM EST
 
-                const now = new Date();
-                const marketOpenTimeUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), marketOpenHour + 1, marketOpenMinute)); // Convert NYSE opening (UTC-5)
-                const marketCloseTimeUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), marketCloseHour + 1, 0)); // Convert NYSE closing (UTC-5)
+              const now = new Date();
+              const marketOpenTimeUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), marketOpenHour + 4, marketOpenMinute)); // Convert NYSE opening (UTC-5)
+              const marketCloseTimeUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), marketCloseHour + 4, 0)); // Convert NYSE closing (UTC-5)
 
-                // If the market is currently open
-                if (now >= marketOpenTimeUTC && now < marketCloseTimeUTC) {
-                    clearInterval(timerInterval); // Stop the countdown
-                    document.getElementById('timer').className = 'market-open'; // Change class to "market-open"
-                    document.getElementById('timer').innerHTML = "NYSE OPEN";
-                }
-                // If the market is closed, show countdown to next opening
-                else {
-                    // Check if it's past the closing time for today, start the countdown for the next day
-                    if (now > marketCloseTimeUTC) {
-                        marketOpenTimeUTC.setUTCDate(marketOpenTimeUTC.getUTCDate() + 1); // Set for tomorrow's opening
-                    }
+              // If the market is currently open
+              if (now >= marketOpenTimeUTC && now < marketCloseTimeUTC) {
+                  clearInterval(timerInterval); // Stop the countdown
+                  document.getElementById('timer').className = 'market-open'; // Change class to "market-open"
+                  document.getElementById('timer').innerHTML = "NYSE OPEN";
+              }
+              // If the market is closed, show countdown to next opening
+              else {
+                  // Check if it's past the closing time for today, start the countdown for the next day
+                  if (now > marketCloseTimeUTC) {
+                      marketOpenTimeUTC.setUTCDate(marketOpenTimeUTC.getUTCDate() + 1); // Set for tomorrow's opening
+                  }
 
-                    const timeDifference = marketOpenTimeUTC - now;
+                  const timeDifference = marketOpenTimeUTC - now;
 
-                    const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+                  const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                  const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+                  const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-                    document.getElementById('timer').className = 'countdown'; // Change class back to "countdown"
-                    document.getElementById('timer').innerHTML = `${hours}h ${minutes}m ${seconds}s`;
-                }
-            }
+                  document.getElementById('timer').className = 'countdown'; // Change class back to "countdown"
+                  document.getElementById('timer').innerHTML = `${hours}h ${minutes}m ${seconds}s`;
+              }
+          }
 
-            // Start the timer and update every second
-            timerInterval = setInterval(updateTimer, 1000);
-            updateTimer(); // Initial call to display the timer immediately
+          // Start the timer and update every second
+          timerInterval = setInterval(updateTimer, 1000);
+          updateTimer(); // Initial call to display the timer immediately
         </script>
    
 </body>
