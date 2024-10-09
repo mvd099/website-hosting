@@ -136,8 +136,8 @@
         </nav>
     </header>
     <main>
-        <h2>Stock Screener</h2>
-        <p>Welcome to the market insights page where you can find up-to-date statistics and information about the financial market such as stock financials and relevant news</p>
+        <h2>Market Insights</h2>
+        <p>Welcome to the market insights page where you can find up-to-date statistics and information about tradable securities and relevant news about the market</p>
         
         <!-- TradingView Widget BEGIN -->
         <div class="tradingview-widget-container">
@@ -155,14 +155,30 @@
                 "locale": "en",
                 "allow_symbol_change": true,
                 "details": true,
-                "calendar": false,
+                "calendar": true,
                 "support_host": "https://www.tradingview.com"
             }
             </script>
         </div>
         <!-- TradingView Widget END -->
 
-        <h3></h3>
+        <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <div class="tradingview-widget-copyright"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
+    {
+    "feedMode": "all_symbols",
+    "isTransparent": true,
+    "displayMode": "adaptive",
+    "width": "98%",
+    "height": "610",
+    "colorTheme": "dark",
+    "locale": "en"
+  }
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
         <ul>
             
         </ul>

@@ -113,7 +113,7 @@ if ('serviceWorker' in navigator) {
   </style>
   
  <style>
-   .navbar {
+  .navbar {
     display: flex;
     justify-content: center; /* Center the nav items */
     align-items: center;
@@ -135,12 +135,12 @@ if ('serviceWorker' in navigator) {
     text-decoration: none;
     font-weight: bold; /* Bold text */
     font-family: 'League Spartan', sans-serif; /* Ensure font consistency */
-    transition: color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    transition: transform 0.3s ease, text-shadow 0.3s ease; /* Smooth transition */
   }
 
   .navbar a:hover {
-    color: #2E8B57; /* Brighter green text color */
-    box-shadow: 0 0 17px #2E8B57, 0 0 10px #2E8B57; /* Toned-down glowing effect */
+    transform: translateY(-3px); /* Pop out effect */
+    text-shadow: 0 0 10px #2E8B57; /* Highlight effect */
   }
 
    #timer {
@@ -218,7 +218,7 @@ if ('serviceWorker' in navigator) {
  </head>
  <body class="x x-fonts-league-spartan">
   <div class="navbar">
-    <a href="stockscreener.html">Stock Screener</a>
+    <a href="stockscreener.html">Market Insights</a>
     <a href="educationalresources.html">Educational Resources</a>
   </div>
  
@@ -438,7 +438,7 @@ if ('serviceWorker' in navigator) {
           <script async="" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" type="text/javascript">
            {
   "symbol": "FRED:SP500",
-  "width": "500",
+  "width": "100%",
   "height": "250",
   "locale": "en",
   "dateRange": "12M",
