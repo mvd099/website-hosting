@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Resources - Tuga Street Bets</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('stock-background.jpg'); /* Background image */
+            background-size: cover;
+            background-position: center;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #0d1117;
+            color: #F0F6FC;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.8em;
+            letter-spacing: 1px;
+            font-weight: bold;
+            color: #58a6ff;
+        }
+
+        nav ul {
+            padding: 0;
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: #58a6ff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #c9d1d9;
+        }
+
+        main {
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 1200px;
+            background: #161b22;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+            flex-grow: 1;
+        }
+
+        h2 {
+            color: #58a6ff;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #58a6ff;
+            padding-bottom: 10px;
+            font-size: 2.2em;
+        }
+
+        h3 {
+            color: #58a6ff;
+            margin-top: 20px;
+        }
+
+        p, ul {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: #f0f6fc;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        .indicator {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            transition: transform 0.3s; /* Add transition for hover effect */
+        }
+
+        .indicator:hover {
+            transform: scale(1.02); /* Slightly scale up on hover */
+        }
+
+        .indicator img {
+            width: 400px; /* Adjusted image size for consistency */
+            height: auto;
+            margin-right: 20px;
+            border-radius: 8px; /* Rounded corners for images */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Optional shadow effect */
+            transition: transform 0.3s; /* Add transition for hover effect */
+        }
+
+        .indicator img:hover {
+            transform: scale(1.05); /* Slightly scale up the image on hover */
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px 0;
+            background: #0d1117;
+            color: #58a6ff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Media Queries */
+        @media (max-width: 600px) {
+            nav ul li {
+                display: block;
+                margin: 5px 0;
+            }
+
+            main {
+                margin: 10px;
+                padding: 20px;
+            }
+
+            .indicator {
+                flex-direction: column; /* Stack images and text on smaller screens */
+                align-items: flex-start;
+            }
+
+            .indicator img {
+                margin-right: 0;
+                margin-bottom: 10px; /* Space between image and text */
+            }
+        }
+
+        /* Flexbox container for resources */
+        .resource-links {
+            display: flex;
+            justify-content: space-between; /* Align items evenly across */
+            margin-top: 20px;
+            flex-wrap: wrap; /* Allows wrapping on smaller screens */
+            gap: 5px; /* Reduce the gap between the logos */
+        }
+
+        /* Styling the resource links */
+        .resource-link {
+            display: inline-block;
+            width: 20%; /* Adjust width to be responsive */
+            max-width: 150px; /* Set max width for uniformity */
+            text-align: center;
+            padding: 0;
+        }
+
+        .resource-link img {
+            width: 100%;
+            height: 80px; /* Keep the height fixed for all logos */
+            object-fit: contain; /* Ensure images maintain aspect ratio */
+            transition: transform 0.3s; /* Add transition for hover effect */
+        }
+
+        .resource-link:hover img {
+            transform: scale(1.05); /* Scale the logo up on hover */
+        }
+
+        .resource-link:hover {
+            transform: translateY(-3px); /* Subtle hover effect */
+            transition: transform 0.3s ease;
+        }
+
+        /* Responsive behavior */
+        @media (max-width: 768px) {
+            .resource-link {
+                width: 24%; /* Adjust width for tablet screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .resource-link {
+                width: 48%; /* Adjust width for small mobile screens */
+            }
+        }
+
+        /* New styles for additional hover effects */
+        .indicator:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* More pronounced shadow on hover */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="stockscreener.html">Stock Screener</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Understanding Key Stock Market Indicators</h2>
+        
+        <div class="indicator">
+            <img src="images/educationalresources/P-E-Ratio-Formula.jpg" alt="Price-to-Earnings Ratio">
+            <div>
+                <h3>1. Price-to-Earnings (P/E) Ratio</h3>
+                <p>The P/E ratio measures a company's current share price relative to its earnings per share (EPS). It helps investors assess whether a stock is overvalued or undervalued.</p>
+            </div>
+        </div>
+
+        <div class="indicator">
+            <img src="images/educationalresources/Market_Capitalization_Formula_1.jpg" alt="Market Capitalization">
+            <div>
+                <h3>2. Market Capitalization</h3>
+                <p>Market cap is the total market value of a company's outstanding shares. It is calculated by multiplying the current share price by the total number of shares outstanding.</p>
+            </div>
+        </div>
+
+        <div class="indicator">
+            <img src="images/educationalresources/Dividend-Yield-Formula.jpg" alt="Dividend Yield">
+            <div>
+                <h3>3. Dividend Yield</h3>
+                <p>Dividend yield is a financial ratio that shows how much a company pays in dividends relative to its share price. It is calculated by dividing the annual dividend payment by the current share price.</p>
+            </div>
+        </div>
+
+        <div class="indicator">
+            <img src="images/educationalresources/Earnings-Per-Share-Formula.jpg" alt="Earnings Per Share">
+            <div>
+                <h3>4. Earnings Per Share (EPS)</h3>
+                <p>EPS indicates how much money a company makes for each share of its stock. It is a key indicator of a company's profitability.</p>
+            </div>
+        </div>
+
+        <div class="indicator">
+            <img src="images/educationalresources/Return-on-Equity-Formula.jpg" alt="Return on Equity">
+            <div>
+                <h3>5. Return on Equity (ROE)</h3>
+                <p>ROE measures a company's profitability by revealing how much profit a company generates with the money shareholders have invested. It is calculated by dividing net income by shareholder equity.</p>
+            </div>
+        </div>
+        
+        <h2>Additional Resources</h2>
+        <div class="resource-links">
+            <a href="https://www.investopedia.com/" target="_blank" class="resource-link">
+                <img src="images/educationalresources/icons/Investopedia_Logo.svg.png" alt="Investopedia Icon">
+            </a>
+            <a href="https://www.marketwatch.com/" target="_blank" class="resource-link">
+                <img src="images\educationalresources\icons\marketwatch-logo-vector-115739476097zsog6tpnd.png" alt="MarketWatch Icon">
+            </a>
+            <a href="https://www.sec.gov/" target="_blank" class="resource-link">
+                <img src="images/educationalresources/icons/SEC_Logo.png" alt="SEC Icon">
+            </a>
+            <a href="https://www.finra.org/investors/insights" target="_blank" class="resource-link">
+                <img src="images\educationalresources\icons\533-5331269_finra-case-study-financial-industry-regulatory-authority-finra.png" alt="FINRA Icon">
+            </a>
+            
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 TugaStreetBets. All rights reserved.</p>
+    </footer>
+</body>
+</html>
