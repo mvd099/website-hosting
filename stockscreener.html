@@ -1,151 +1,313 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Market Insights - Tuga Street Bets</title>
-    <style>
-        /* General Styles */
-        body {
-            font-family: 'Poppins', sans-serif; /* Match your home page font */
-            margin: 0;
-            padding: 0;
-            background-image: url('stock-background.jpg'); /* Background image */
-            background-size: cover;
-            background-position: center;
-            background-color: #0d1117;
-            color: #c9d1d9;
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Stock Details</title>
+		<style>
+			:root {
+				--gap-size: 32px;
+				box-sizing: border-box;
+				font-family: -apple-system, BlinkMacSystemFont, 'Trebuchet MS', Roboto,
+					Ubuntu, sans-serif;
+				color: #000;
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			body {
+				margin: 0;
+				padding: 0;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				background: #0D1117;
+			}
+
+			header,
+			footer {
+				display: flex;
+				width: 100%;
+				align-items: center;
+				background: rgba(255, 255, 255, 0.05);
+				gap: 12px;
+			}
+
+			header {
+				justify-content: center;
+				padding: 0 var(--gap-size);
+				gap: calc(var(--gap-size) * 2);
+				flex-direction: row;
+				z-index: 1;
+				background: #0d1117;
+				box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+			}
+
+			header #site-logo {
+				font-weight: 600;
+				font-size: 32px;
+				padding: 16px;
+				background: var(
+					--18-promo-gradient-02,
+					linear-gradient(90deg, #00bce5 0%, #2962ff 100%)
+				);
+				-webkit-text-fill-color: transparent;
+				-webkit-background-clip: text;
+				background-clip: text;
+			}
+
+			header input[type='search'] {
+				padding: 10px;
+				width: 100%;
+				height: 32px;
+				max-width: 400px;
+				border: 1px solid #ccc;
+				border-radius: 20px;
+			}
+
+			footer {
+				flex-direction: column;
+				padding: calc(var(--gap-size) * 0.5) var(--gap-size);
+				margin-top: var(--gap-size);
+				border-top: solid 2px rgba(0, 0, 0, 0.1);
+				justify-content: center;
+			}
+
+			footer p,
+			#powered-by-tv p {
+				margin: 0;
+				font-size: 12px;
+				color: rgb(255, 255, 255);
+			}
+
+			main {
+				display: grid;
+				width: 100%;
+				padding: 30px;
+				margin: 10px auto;
+				max-width: 960px;
+				grid-template-columns: 1fr 1fr;
+				grid-gap: var(--gap-size);
+				background: #161b22;
+            	border-radius: 15px;
+            	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+			}
+
+
+			.span-full-grid,
+			#symbol-info,
+			#advanced-chart,
+			#company-profile,
+			#fundamental-data {
+				grid-column: span 2;
+			}
+
+			.span-one-column,
+			#technical-analysis,
+			#top-stories,
+			#powered-by-tv {
+				grid-column: span 1;
+			}
+
+			#ticker-tape {
+				width: 100%;
+				margin-bottom: var(--gap-size);
+			}
+
+			#advanced-chart {
+				height: 500px;
+			}
+
+			#company-profile {
+				height:390px;
+			}
+
+			#fundamental-data {
+				height: 490px;
+			}
+
+			#technical-analysis,
+			#top-stories {
+				height: 425px;
+			}
+
+			
+
+			@media (max-width: 800px) {
+				main > section,
+				.span-full-grid,
+				#technical-analysis,
+				#top-stories,
+				#powered-by-tv {
+					grid-column: span 2;
+				}
+			}
+			nav {
             display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+            justify-content: center; /* Center the nav items */
+            align-items: center;
+              }
 
-        header {
-            background: #0d1117; /* Header matches homepage */
-            color: #F0F6FC;
-            padding: 20px 0;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
-        }
+            nav ul {
+                padding: 0;
+                list-style: none;
+                margin-top: 10px;
+                display: flex; /* Use flexbox for ul */
+            }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.8em; /* Slightly larger for emphasis */
-            letter-spacing: 1px;
-            font-weight: bold;
-            color: #58a6ff; /* Match accent color */
-        }
-
-        nav ul {
-            padding: 0;
-            list-style: none;
-            margin-top: 10px;
-        }
-
-        nav ul li {
-            display: inline;
-            margin: 0 20px;
-        }
-
-        nav ul li a {
-            color: #58a6ff;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: #c9d1d9;
+            nav ul li {
+                margin: 0 20px;
+            }
             
-        }
-
-        main {
-            padding: 30px;
-            margin: 20px auto;
-            max-width: 1800px;
-            background: #161b22;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
-            flex-grow: 1;
-        }
-
-        h2 {
-            color: #58a6ff;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #58a6ff;
-            padding-bottom: 10px;
-            font-size: 2.2em;
-        }
-
-        p, ul {
-            margin-bottom: 20px;
-            line-height: 1.6;
-            color: #f0f6fc; /* Light text color */
-        }
-
-        ul {
-            padding-left: 20px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 15px 0;
-            background: #0d1117;
-            color: #58a6ff;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-
-        /* Widget container styling */
-        .widget-container {
-            width: 100%;
-            height: 600px; /* Desktop height */
-        }
-
-       /* Desktop widget styling */
-       .desktop-widget {
-            display: block;
-        }
-
-        /* Mobile widget styling */
-        .mobile-widget {
-            display: none;
-        }
-
-        /* Show mobile widget and hide desktop widget on small screens */
-        @media (max-width: 768px) {
-            .desktop-widget {
-                display: none;
+            nav ul li a {
+                color: #58a6ff;
+                text-decoration: none;
+                font-weight: bold;
+                transition: color 0.3s;
             }
 
-            .mobile-widget {
-                display: block;
+            nav ul li a:hover {
+                color: #c9d1d9; /* Use lighter shade on hover */
             }
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <nav>
+
+		</style>
+	</head>
+	<body>
+		<header>
+			 <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="educationalresources.html">Educational Resources</a></li>
             </ul>
         </nav>
-    </header>
-    <main>
-        <h2>Market Insights</h2>
-        <p>Welcome to the market insights page where you can find up-to-date statistics and information about tradable securities and relevant news about the market</p>
-        
-        <!-- TradingView Widget BEGIN -->
+		</header>
+		<nav id="ticker-tape"></nav>
+		<main>
+			<section id="symbol-info">
+			</section>
+			<section id="advanced-chart">
+			</section>
+			<section id="company-profile">
+			</section>
+			<section id="fundamental-data">
+			</section>
+			<section id="technical-analysis">
+			</section>
+			<section id="top-stories">
+			</section>
+			
+		</main>
+		<footer>
+			<p>© 2024 TugaStreetBets. All rights reserved.</p>
+			<p></p>
+		</footer>
+	</body>
+	<template id="ticker-tape-widget-template">
+		<!-- TradingView Widget BEGIN -->
+		<div class="tradingview-widget-container">
+			<div class="tradingview-widget-container__widget"></div>
+			<script
+				type="text/javascript"
+				src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
+				async
+			>
+				{
+				"symbols": [
+				  {
+					"description": "",
+					"proName": "NASDAQ:TSLA"
+				  },
+				  {
+					"description": "",
+					"proName": "NASDAQ:AAPL"
+				  },
+				  {
+					"description": "",
+					"proName": "NASDAQ:NVDA"
+				  },
+				  {
+					"description": "",
+					"proName": "NASDAQ:MSFT"
+				  },
+				  {
+					"description": "",
+					"proName": "NASDAQ:AMZN"
+				  },
+				  {
+					"description": "",
+					"proName": "NASDAQ:GOOGL"
+				  },
+				  {
+					"description": "",
+					"proName": "NASDAQ:META"
+				  },
+				  {
+					"description": "",
+					"proName": "NYSE:BRK.B"
+				  },
+				  {
+					"description": "",
+					"proName": "NYSE:LLY"
+				  },
+				  {
+					"description": "",
+					"proName": "NYSE:UNH"
+				  },
+				  {
+					"description": "",
+					"proName": "NYSE:V"
+				  },
+				  {
+					"description": "",
+					"proName": "NYSE:WMT"
+				  }
+				],
+				"showSymbolLogo": true,
+				"colorTheme": "dark",
+				"isTransparent": false,
+				"displayMode": "adaptive",
+				"locale": "en",
+				"largeChartUrl": "#"
+				 }
+			</script>
+		</div>
+		<!-- TradingView Widget END -->
+	</template>
+	<template id="symbol-info-template">
+		<!-- TradingView Widget BEGIN -->
+		<div class="tradingview-widget-container">
+			<div class="tradingview-widget-container__widget"></div>
+			<script
+				type="text/javascript"
+				src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-info.js"
+				async
+			>
+				{
+				"symbol": "NASDAQ:AAPL",
+				"width": "100%",
+				"locale": "en",
+				"colorTheme": "dark",
+				"isTransparent": true
+				 }
+			</script>
+		</div>
+		<!-- TradingView Widget END -->
+	</template>
+	<script
+				type="text/javascript"
+				src="https://s3.tradingview.com/tv.js"
+			></script>
+	<template id="advanced-chart-template">
+		<!-- TradingView Widget BEGIN -->
         <div class="desktop-widget">
             <div class="tradingview-widget-container__widget"></div>
             <div class="tradingview-widget-copyright"></div>
             <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
             {
-                "width": "98%",
-                "height": "610",
+                "width": "100%",
+                "height": "500",
                 "symbol": "NASDAQ:AAPL",
                 "interval": "D",
                 "timezone": "Etc/UTC",
@@ -160,60 +322,135 @@
             </script>
         </div>
         <!-- TradingView Widget END -->
+		
+	</template>
+	<template id="company-profile-template">
+		<!-- TradingView Widget BEGIN -->
+		<div class="tradingview-widget-container">
+			<div class="tradingview-widget-container__widget"></div>
+			<script
+				type="text/javascript"
+				src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-profile.js"
+				async
+			>
+				  {
+				  "width": "100%",
+				  "height": "100%",
+				  "colorTheme": "dark",
+				  "isTransparent": true,
+				  "symbol": "NASDAQ:AAPL",
+				  "locale": "en"
+				}
+			</script>
+		</div>
+		<!-- TradingView Widget END -->
+	</template>
+	<template id="fundamental-data-template">
+		<!-- TradingView Widget BEGIN -->
+		<div class="tradingview-widget-container">
+			<div class="tradingview-widget-container__widget"></div>
+			<script
+				type="text/javascript"
+				src="https://s3.tradingview.com/external-embedding/embed-widget-financials.js"
+				async
+			>
+				  {
+				  "colorTheme": "dark",
+				  "isTransparent": true,
+				  "largeChartUrl": "",
+				  "displayMode": "adaptive",
+				  "width": "100%",
+				  "height": "100%",
+				  "symbol": "NASDAQ:AAPL",
+				  "locale": "en"
+				}
+			</script>
+		</div>
+		<!-- TradingView Widget END -->
+	</template>
+	<template id="technical-analysis-template">
+		<!-- TradingView Widget BEGIN -->
+		<div class="tradingview-widget-container">
+			<div class="tradingview-widget-container__widget"></div>
+			<script
+				type="text/javascript"
+				src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js"
+				async
+			>
+				{
+				"interval": "15m",
+				"width": "100%",
+				"isTransparent": true,
+				"height": "100%",
+				"symbol": "NASDAQ:AAPL",
+				"showIntervalTabs": true,
+				"displayMode": "single",
+				"locale": "en",
+				"colorTheme": "dark"
+				 }
+			</script>
+		</div>
+		<!-- TradingView Widget END -->
+	</template>
+	<template id="top-stories-template">
+		<!-- TradingView Widget BEGIN -->
+		<div class="tradingview-widget-container">
+			<div class="tradingview-widget-container__widget"></div>
+			<script
+				type="text/javascript"
+				src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js"
+				async
+			>
+				  {
+				  "feedMode": "symbol",
+				  "symbol": "NASDAQ:AAPL",
+				  "colorTheme": "dark",
+				  "isTransparent": true,
+				  "displayMode": "regular",
+				  "width": "100%",
+				  "height": "100%",
+				  "locale": "en"
+				}
+			</script>
+		</div>
+		<!-- TradingView Widget END -->
+	</template>
+	<script>
+		function getQueryParam(param) {
+			let urlSearchParams = new URLSearchParams(window.location.search);
+			return urlSearchParams.get(param);
+		}
+		function readSymbolFromQueryString() {
+			return getQueryParam('tvwidgetsymbol');
+		}
 
-   <!-- TradingView Widget BEGIN -->
-<div class="mobile-widget">
-    <div class="tradingview-widget-container__widget"></div>
-    <div class="tradingview-widget-copyright"></div>
-    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-hotlists.js" async>
-    {
-    "colorTheme": "dark",
-    "dateRange": "1D",
-    "exchange": "US",
-    "showChart": true,
-    "locale": "en",
-    "largeChartUrl": "",
-    "isTransparent": true,
-    "showSymbolLogo": false,
-    "showFloatingTooltip": false,
-    "width": "400",
-    "height": "550",
-    "plotLineColorGrowing": "rgba(0, 255, 0, 1)",
-    "plotLineColorFalling": "rgba(255, 0, 0, 1)",
-    "gridLineColor": "rgba(42, 46, 57, 0)",
-    "scaleFontColor": "rgba(209, 212, 220, 1)",
-    "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
-    "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
-    "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
-    "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
-    "symbolActiveColor": "rgba(41, 98, 255, 0.12)"
-  }
-    </script>
-  </div>
-  <!-- TradingView Widget END -->
-        <!-- TradingView Widget BEGIN -->
-<div class="widget-container">
-    <div class="tradingview-widget-container__widget"></div>
-    <div class="tradingview-widget-copyright"></div>
-    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
-    {
-    "feedMode": "all_symbols",
-    "isTransparent": true,
-    "displayMode": "adaptive",
-    "width": "98%",
-    "height": "610",
-    "colorTheme": "dark",
-    "locale": "en"
-  }
-    </script>
-  </div>
-  <!-- TradingView Widget END -->
-        <ul>
-            
-        </ul>
-    </main>
-    <footer>
-        <p>&copy; 2024 TugaStreetBets. All rights reserved.</p>
-    </footer>
-</body>
+		function cloneTemplateInto(templateId, targetId, rewrites) {
+			const tmpl = document.querySelector(`#${templateId}`);
+			if (!tmpl) return;
+			const target = document.querySelector(`#${targetId}`);
+			if (!target) return;
+			target.innerText = '';
+			const clone = tmpl.content.cloneNode(true);
+			if (rewrites) {
+				const script = clone.querySelector('script');
+				script.textContent = rewrites(script.textContent);
+			}
+			target.appendChild(clone);
+		}
+		const symbol = readSymbolFromQueryString() || 'NASDAQ:AAPL';
+		function setSymbol(scriptContent) {
+			return scriptContent.replace(/"symbol": "([^"]*)"/g, () => {
+				return `"symbol": "${symbol}"`;
+			});
+		}
+		cloneTemplateInto('symbol-info-template', 'symbol-info', setSymbol);
+		cloneTemplateInto('advanced-chart-template', 'advanced-chart');
+		cloneTemplateInto('company-profile-template', 'company-profile', setSymbol);
+		cloneTemplateInto('fundamental-data-template', 'fundamental-data', setSymbol);
+		cloneTemplateInto('technical-analysis-template', 'technical-analysis', setSymbol);
+		cloneTemplateInto('top-stories-template', 'top-stories', setSymbol);
+		if (symbol) {
+			document.title = `Stock Details - ${symbol}`;
+		}
+	</script>
 </html>
