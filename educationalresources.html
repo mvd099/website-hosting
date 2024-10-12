@@ -207,6 +207,9 @@
             transform: translateY(-3px); /* Subtle hover effect */
             transition: transform 0.3s ease;
         }
+        .hidden {
+    display: none;
+}
     </style>
 </head>
 <body>
@@ -331,12 +334,21 @@
         <p>&copy; 2024 Tuga Street Bets | All Rights Reserved</p>
     </footer>
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach((section, index) => {
+                if (index !== 0) {
+                    section.classList.add('hidden'); // Hide all sections except the first
+                }
+            });
+        });
+    
         function showSection(sectionId) {
             const sections = document.querySelectorAll('.section');
             sections.forEach(section => {
-                section.style.display = 'none';
+                section.classList.add('hidden'); // Hide all sections
             });
-            document.getElementById(sectionId).style.display = 'block';
+            document.getElementById(sectionId).classList.remove('hidden'); // Show the selected section
         }
     </script>
 </body>
