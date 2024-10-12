@@ -21,9 +21,11 @@
 				margin: 0;
 				padding: 0;
 				display: flex;
+				height: 100%;
 				flex-direction: column;
+				justify-content: center;
 				align-items: center;
-				background: #0D1117;
+				background: #161b22;
 			}
 
 			header,
@@ -79,9 +81,6 @@
 				max-width: 960px;
 				grid-template-columns: 1fr 1fr;
 				grid-gap: var(--gap-size);
-				background: #161b22;
-            	border-radius: 15px;
-            	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
 			}
 
 
@@ -160,10 +159,51 @@
             nav ul li a:hover {
                 color: #c9d1d9; /* Use lighter shade on hover */
             }
+		
+			.input-container {
+				display: flex; /* Use flexbox for horizontal alignment */
+				justify-content: center; /* Center the content horizontally */
+				width: 100%; /* Allow the container to take full width */
+				margin-top: 20px; /* Add margin from the top if needed */
+			}
+
+			.input-box {
+				width: 400px; /* Set a smaller width for the input box */
+				padding: 10px; /* Adjust padding to ensure consistent height */
+				border: 1px solid #000000; /* Change border color to fit your theme */
+				border-radius: 20px; /* More rounded corners */
+				background-color: #1e1e1e; /* Dark background */
+				color: #fff; /* Text color */
+				outline: none; /* Remove the default outline */
+				font-size: 16px; /* Font size */
+				box-sizing: border-box; /* Include padding in width */
+			}
+
+			.input-box:focus {
+				border-color: #000000; /* Keep this consistent with your theme */
+				box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Optional shadow effect */
+			}
+
+			.styled-button {
+				background-color: #007bff; /* Button color */
+				color: white; /* Button text color */
+				border: none; /* Remove default border */
+				border-radius: 20px; /* Make button corners rounded */
+				cursor: pointer; /* Pointer cursor */
+				padding: 10px; /* Match padding to input box for equal height */
+				margin-left: -45px; /* Overlap the button with the input */
+				height: 40px; /* Set a fixed height for the button */
+				width: 80px; /* Set a fixed height for the button */
+			}
+
+			.styled-button:hover {
+				background-color: #0056b3; /* Darker shade on hover */
+			}
 
 		</style>
 	</head>
 	<body>
+		
 		<header>
 			 <nav>
             <ul>
@@ -171,9 +211,12 @@
                 <li><a href="educationalresources.html">Educational Resources</a></li>
             </ul>
         </nav>
+		
 		</header>
 		<nav id="ticker-tape"></nav>
+		
 		<main>
+			
 			<section id="symbol-info">
 			</section>
 			<section id="advanced-chart">
@@ -188,86 +231,188 @@
 			</section>
 			
 		</main>
+		
 		<footer>
 			<p>© 2024 TugaStreetBets. All rights reserved.</p>
 			<p></p>
 		</footer>
+		
 	</body>
-	<template id="ticker-tape-widget-template">
-		<!-- TradingView Widget BEGIN -->
-		<div class="tradingview-widget-container">
-			<div class="tradingview-widget-container__widget"></div>
-			<script
-				type="text/javascript"
-				src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
-				async
-			>
-				{
-				"symbols": [
-				  {
-					"description": "",
-					"proName": "NASDAQ:TSLA"
-				  },
-				  {
-					"description": "",
-					"proName": "NASDAQ:AAPL"
-				  },
-				  {
-					"description": "",
-					"proName": "NASDAQ:NVDA"
-				  },
-				  {
-					"description": "",
-					"proName": "NASDAQ:MSFT"
-				  },
-				  {
-					"description": "",
-					"proName": "NASDAQ:AMZN"
-				  },
-				  {
-					"description": "",
-					"proName": "NASDAQ:GOOGL"
-				  },
-				  {
-					"description": "",
-					"proName": "NASDAQ:META"
-				  },
-				  {
-					"description": "",
-					"proName": "NYSE:BRK.B"
-				  },
-				  {
-					"description": "",
-					"proName": "NYSE:LLY"
-				  },
-				  {
-					"description": "",
-					"proName": "NYSE:UNH"
-				  },
-				  {
-					"description": "",
-					"proName": "NYSE:V"
-				  },
-				  {
-					"description": "",
-					"proName": "NYSE:WMT"
-				  }
-				],
-				"showSymbolLogo": true,
-				"colorTheme": "dark",
-				"isTransparent": false,
-				"displayMode": "adaptive",
+	<script>
+        function updateTicker() {
+            var ticker = document.getElementById("tickerInput").value || 'AAPL'; // Default to AAPL if no input
+            // Redirect to the same page with a query parameter
+            window.location.href = '?ticker=' + encodeURIComponent(ticker);
+        }
+
+        // On page load, check for the ticker in the URL
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            const ticker = params.get('ticker');
+
+            if (ticker) {
+    // Select all tradingview widget containers
+    const widgetContainers = document.querySelectorAll('.tradingview-widget-container');
+
+    // Clear the current widget containers
+    widgetContainers.forEach(widgetContainer => {
+        widgetContainer.innerHTML = ''; // Clear each widget container
+    });
+
+    // Create a new widget for each container as needed
+    widgetContainers.forEach(widgetContainer => {
+        const newWidget = document.createElement('div');
+        newWidget.className = "tradingview-widget-container__widget";
+        widgetContainer.appendChild(newWidget);
+
+		const widgetId = widgetContainer.id; // Get the ID of the widget container
+
+		const script = document.createElement('script');
+		script.type = 'text/javascript';
+		script.async = true;
+
+		let widgetConfig;
+
+		if (widgetId === 'widget-container-1') {
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-symbol-info.js';
+        script.async = true;
+        script.text = JSON.stringify({
+            "symbol": "NASDAQ:" + ticker.toUpperCase(),
+            "width": "100%",
+            "locale": "en",
+            "colorTheme": "dark",
+            "isTransparent": true
+        });
+
+        // Append the new script to the new widget
+        widgetContainer.appendChild(script);
+        console.log("Updated widget with ticker: " + ticker);}
+
+		else if (widgetId === "advanced-chart") {
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
+        script.async = true;
+        script.text = JSON.stringify({
+           		"width": "100%",
+                "height": "500",
+                "symbol": "NASDAQ:"+ ticker.toUpperCase(),
+                "interval": "D",
+                "timezone": "Etc/UTC",
+                "theme": "dark",
+                "style": "1",
+                "locale": "en",
+                "allow_symbol_change": true,
+                "details": true,
+                "calendar": true,
+                "support_host": "https://www.tradingview.com"
+        });
+
+        // Append the new script to the new widget
+        widgetContainer.appendChild(script);
+        console.log("Updated widget with ticker: " + ticker);}
+
+		else if (widgetId === "profile-chart") {
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-symbol-profile.js';
+        script.async = true;
+        script.text = JSON.stringify({
+				  "width": "100%",
+				  "height": "100%",
+				  "colorTheme": "dark",
+				  "isTransparent": true,
+				  "symbol": "NASDAQ:" + ticker.toUpperCase(),
+				  "locale": "en"
+				});
+
+        // Append the new script to the new widget
+        widgetContainer.appendChild(script);
+        console.log("Updated widget with ticker: " + ticker);}
+
+		else if (widgetId === "fundamental-data-chart") {
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-financials.js';
+        script.async = true;
+        script.text = JSON.stringify( {
+				  "colorTheme": "dark",
+				  "isTransparent": true,
+				  "largeChartUrl": "",
+				  "displayMode": "adaptive",
+				  "width": "100%",
+				  "height": "100%",
+				  "symbol": "NASDAQ:" + ticker.toUpperCase(),
+				  "locale": "en"
+				});
+
+        // Append the new script to the new widget
+        widgetContainer.appendChild(script);
+        console.log("Updated widget with ticker: " + ticker);}
+
+		else if (widgetId === "technical-analysis-chart") {
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js';
+        script.async = true;
+        script.text = JSON.stringify( {
+				"interval": "15m",
+				"width": "100%",
+				"isTransparent": true,
+				"height": "100%",
+				"symbol": "NASDAQ:" + ticker.toUpperCase(),
+				"showIntervalTabs": true,
+				"displayMode": "single",
 				"locale": "en",
-				"largeChartUrl": "#"
-				 }
-			</script>
-		</div>
-		<!-- TradingView Widget END -->
-	</template>
+				"colorTheme": "dark"
+				 });
+
+        // Append the new script to the new widget
+        widgetContainer.appendChild(script);
+        console.log("Updated widget with ticker: " + ticker);}
+
+		
+		else if (widgetId === "top-stories-chart") {
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-timeline.js';
+        script.async = true;
+        script.text = JSON.stringify( {
+				"interval": "15m",
+				"width": "100%",
+				"isTransparent": true,
+				"height": "100%",
+				"symbol": "NASDAQ:" + ticker.toUpperCase(),
+				"showIntervalTabs": true,
+				"displayMode": "single",
+				"locale": "en",
+				"colorTheme": "dark"
+				 });
+
+        // Append the new script to the new widget
+        widgetContainer.appendChild(script);
+        console.log("Updated widget with ticker: " + ticker);}
+    });
+}
+        }
+    </script>
+		
+	<div id="widget-container">
 	<template id="symbol-info-template">
+
+		<label for="tickerInput"></label>
+		<div class="input-container">
+			<input type="text" id="tickerInput" class="input-box" placeholder="AAPL">
+			<button id="update-button" class="styled-button" onclick="updateTicker()">Update</button>
+		</div>
+		<br>
+
 		<!-- TradingView Widget BEGIN -->
-		<div class="tradingview-widget-container">
+		<div class="tradingview-widget-container" id="widget-container-1"> <!-- Add ID here -->
 			<div class="tradingview-widget-container__widget"></div>
+			
 			<script
 				type="text/javascript"
 				src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-info.js"
@@ -284,15 +429,15 @@
 		</div>
 		<!-- TradingView Widget END -->
 	</template>
+	</div>
 	<script
 				type="text/javascript"
 				src="https://s3.tradingview.com/tv.js"
 			></script>
 	<template id="advanced-chart-template">
 		<!-- TradingView Widget BEGIN -->
-        <div class="desktop-widget">
-            <div class="tradingview-widget-container__widget"></div>
-            <div class="tradingview-widget-copyright"></div>
+        <div class="tradingview-widget-container" id="advanced-chart">
+			<div class="tradingview-widget-container__widget"></div>
             <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
             {
                 "width": "100%",
@@ -315,7 +460,7 @@
 	</template>
 	<template id="company-profile-template">
 		<!-- TradingView Widget BEGIN -->
-		<div class="tradingview-widget-container">
+		<div class="tradingview-widget-container" id="profile-chart">
 			<div class="tradingview-widget-container__widget"></div>
 			<script
 				type="text/javascript"
@@ -336,7 +481,7 @@
 	</template>
 	<template id="fundamental-data-template">
 		<!-- TradingView Widget BEGIN -->
-		<div class="tradingview-widget-container">
+		<div class="tradingview-widget-container"id="fundamental-data-chart">
 			<div class="tradingview-widget-container__widget"></div>
 			<script
 				type="text/javascript"
@@ -359,7 +504,7 @@
 	</template>
 	<template id="technical-analysis-template">
 		<!-- TradingView Widget BEGIN -->
-		<div class="tradingview-widget-container">
+		<div class="tradingview-widget-container"id="technical-analysis-chart">
 			<div class="tradingview-widget-container__widget"></div>
 			<script
 				type="text/javascript"
@@ -383,7 +528,7 @@
 	</template>
 	<template id="top-stories-template">
 		<!-- TradingView Widget BEGIN -->
-		<div class="tradingview-widget-container">
+		<div class="tradingview-widget-container"id="top-stories-chart">
 			<div class="tradingview-widget-container__widget"></div>
 			<script
 				type="text/javascript"
@@ -404,6 +549,8 @@
 		</div>
 		<!-- TradingView Widget END -->
 	</template>
+	
+	
 	<script>
 		function getQueryParam(param) {
 			let urlSearchParams = new URLSearchParams(window.location.search);
