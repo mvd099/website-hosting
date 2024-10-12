@@ -6,20 +6,21 @@
     <title>Educational Resources - Tuga Street Bets</title>
     <style>
         :root {
-				--gap-size: 32px;
-				box-sizing: border-box;
-				font-family: -apple-system, BlinkMacSystemFont, 'Trebuchet MS', Roboto,
-					Ubuntu, sans-serif;
-				color: #000;
-			}
+            --gap-size: 32px;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Trebuchet MS', Roboto,
+                Ubuntu, sans-serif;
+            color: #000;
+        }
 
-			* {
-				box-sizing: border-box;
-			}
+        * {
+            box-sizing: border-box;
+        }
+
         /* General Styles */
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Trebuchet MS', Roboto,
-					Ubuntu, sans-serif;
+                Ubuntu, sans-serif;
             margin: 0;
             padding: 0;
             background-size: cover;
@@ -27,21 +28,19 @@
             background-color: #0d1117;
             color: #c9d1d9;
             display: flex;
-            flex-direction: column;
             min-height: 100vh;
+            flex-direction: column;
         }
 
         header {
             background: #0d1117;
             color: #F0F6FC;
             padding: 0 var(--gap-size);
-            gap: calc(var(--gap-size) * 2);
             flex-direction: row;
-			z-index: 1;
+            z-index: 1;
             text-align: center;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
         }
-     
 
         header h1 {
             margin: 0;
@@ -75,11 +74,47 @@
         main {
             padding: 30px;
             margin: 20px auto;
-            max-width: 1200px;
+            max-width: 1600px;
             background: #161b22;
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
             flex-grow: 1;
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            flex: 0.5;
+            margin-right: 20px;
+            padding: 15px;
+        }
+
+        .sidebar h3 {
+            color: #58a6ff;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 10px 0;
+        }
+
+        .sidebar ul li a {
+            color: #c9d1d9;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            color: #58a6ff;
+        }
+
+        /* Content */
+        .content {
+            flex: 3;
         }
 
         h2 {
@@ -90,9 +125,29 @@
             font-size: 2.2em;
         }
 
-        h3 {
-            color: #58a6ff;
-            margin-top: 20px;
+        /* Indicator Styles */
+        .indicator {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+
+        .indicator:hover {
+            transform: scale(1.02);
+        }
+
+        .indicator img {
+            width: 400px;
+            height: auto;
+            margin-right: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+        }
+
+        .indicator img:hover {
+            transform: scale(1.05);
         }
 
         p, ul {
@@ -105,30 +160,6 @@
             padding-left: 20px;
         }
 
-        .indicator {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            transition: transform 0.3s; /* Add transition for hover effect */
-        }
-
-        .indicator:hover {
-            transform: scale(1.02); /* Slightly scale up on hover */
-        }
-
-        .indicator img {
-            width: 400px; /* Adjusted image size for consistency */
-            height: auto;
-            margin-right: 20px;
-            border-radius: 8px; /* Rounded corners for images */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Optional shadow effect */
-            transition: transform 0.3s; /* Add transition for hover effect */
-        }
-
-        .indicator img:hover {
-            transform: scale(1.05); /* Slightly scale up the image on hover */
-        }
-
         footer {
             text-align: center;
             padding: 15px 0;
@@ -139,45 +170,24 @@
             width: 100%;
         }
 
-        /* Media Queries */
-        @media (max-width: 600px) {
-            nav ul li {
-                display: block;
-                margin: 5px 0;
-            }
-
-            main {
-                margin: 10px;
-                padding: 20px;
-            }
-
-            .indicator {
-                flex-direction: column; /* Stack images and text on smaller screens */
-                align-items: flex-start;
-            }
-
-            .indicator img {
-                margin-right: 0;
-                margin-bottom: 10px; /* Space between image and text */
-            }
-        }
-
-        /* Flexbox container for resources */
         .resource-links {
-            display: flex;
+            padding: 15px;
+            margin: 20px auto;
+            max-width: 800px;
             justify-content: space-between; /* Align items evenly across */
-            margin-top: 20px;
-            flex-wrap: wrap; /* Allows wrapping on smaller screens */
-            gap: 5px; /* Reduce the gap between the logos */
+            background: #161b22;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
         }
 
-        /* Styling the resource links */
-        .resource-link {
+           /* Styling the resource links */
+           .resource-link {
             display: inline-block;
             width: 20%; /* Adjust width to be responsive */
             max-width: 150px; /* Set max width for uniformity */
             text-align: center;
             padding: 0;
+            background-color: ;
         }
 
         .resource-link img {
@@ -185,6 +195,7 @@
             height: 80px; /* Keep the height fixed for all logos */
             object-fit: contain; /* Ensure images maintain aspect ratio */
             transition: transform 0.3s; /* Add transition for hover effect */
+            filter: drop-shadow(0 0 px #ffffff); 
         }
 
         .resource-link:hover img {
@@ -195,24 +206,6 @@
         .resource-link:hover {
             transform: translateY(-3px); /* Subtle hover effect */
             transition: transform 0.3s ease;
-        }
-
-        /* Responsive behavior */
-        @media (max-width: 768px) {
-            .resource-link {
-                width: 24%; /* Adjust width for tablet screens */
-            }
-        }
-
-        @media (max-width: 480px) {
-            .resource-link {
-                width: 48%; /* Adjust width for small mobile screens */
-            }
-        }
-
-        /* New styles for additional hover effects */
-        .indicator:hover {
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* More pronounced shadow on hover */
         }
     </style>
 </head>
@@ -226,49 +219,100 @@
         </nav>
     </header>
     <main>
-        <h2>Understanding Key Stock Market Indicators</h2>
-        
-        <div class="indicator">
-            <img src="images/educationalresources/P-E-Ratio-Formula.jpg" alt="Price-to-Earnings Ratio">
-            <div>
-                <h3>1. Price-to-Earnings (P/E) Ratio</h3>
-                <p>The P/E ratio measures a company's current share price relative to its earnings per share (EPS). It helps investors assess whether a stock is overvalued or undervalued.</p>
-            </div>
+        <div class="sidebar">
+            <h3>Categories</h3>
+            <ul>
+                <li><a href="#key-indicators" onclick="showSection('key-indicators')">Key Indicators</a></li>
+                <li><a href="#investment-strategies" onclick="showSection('investment-strategies')">Investment Strategies</a></li>
+                <li><a href="#financial-news" onclick="showSection('financial-news')">Financial News</a></li>
+            </ul>
         </div>
+        <div class="content">
+            <div id="key-indicators" class="section">
+                <h2>Understanding Key Stock Market Indicators</h2>
+                
+                <div class="indicator">
+                    <img src="images/educationalresources/P-E-Ratio-Formula.jpg" alt="Price-to-Earnings Ratio">
+                    <div>
+                        <h3>1. Price-to-Earnings (P/E) Ratio</h3>
+                        <p>The P/E ratio measures a company's current share price relative to its earnings per share (EPS). It helps investors assess whether a stock is overvalued or undervalued.</p>
+                    </div>
+                </div>
 
-        <div class="indicator">
-            <img src="images/educationalresources/Market_Capitalization_Formula_1.jpg" alt="Market Capitalization">
-            <div>
-                <h3>2. Market Capitalization</h3>
-                <p>Market cap is the total market value of a company's outstanding shares. It is calculated by multiplying the current share price by the total number of shares outstanding.</p>
-            </div>
-        </div>
+                <div class="indicator">
+                    <img src="images/educationalresources/Market_Capitalization_Formula_1.jpg" alt="Market Capitalization">
+                    <div>
+                        <h3>2. Market Capitalization</h3>
+                        <p>Market cap is the total market value of a company's outstanding shares. It is calculated by multiplying the current share price by the total number of shares outstanding.</p>
+                    </div>
+                </div>
 
-        <div class="indicator">
-            <img src="images/educationalresources/Dividend-Yield-Formula.jpg" alt="Dividend Yield">
-            <div>
-                <h3>3. Dividend Yield</h3>
-                <p>Dividend yield is a financial ratio that shows how much a company pays in dividends relative to its share price. It is calculated by dividing the annual dividend payment by the current share price.</p>
-            </div>
-        </div>
+                <div class="indicator">
+                    <img src="images/educationalresources/Dividend-Yield-Formula.jpg" alt="Dividend Yield">
+                    <div>
+                        <h3>3. Dividend Yield</h3>
+                        <p>Dividend yield is a financial ratio that shows how much a company pays in dividends relative to its share price. It is calculated by dividing the annual dividend payment by the current share price.</p>
+                    </div>
+                </div>
 
-        <div class="indicator">
-            <img src="images/educationalresources/Earnings-Per-Share-Formula.jpg" alt="Earnings Per Share">
-            <div>
-                <h3>4. Earnings Per Share (EPS)</h3>
-                <p>EPS indicates how much money a company makes for each share of its stock. It is a key indicator of a company's profitability.</p>
-            </div>
-        </div>
+                <div class="indicator">
+                    <img src="images/educationalresources/Earnings-Per-Share-Formula.jpg" alt="Earnings Per Share">
+                    <div>
+                        <h3>4. Earnings Per Share (EPS)</h3>
+                        <p>EPS indicates how much money a company makes for each share of its stock. It is a key indicator of a company's profitability.</p>
+                    </div>
+                </div>
 
-        <div class="indicator">
-            <img src="images/educationalresources/Return-on-Equity-Formula.jpg" alt="Return on Equity">
-            <div>
-                <h3>5. Return on Equity (ROE)</h3>
-                <p>ROE measures a company's profitability by revealing how much profit a company generates with the money shareholders have invested. It is calculated by dividing net income by shareholder equity.</p>
+                <div class="indicator">
+                    <img src="images/educationalresources/Return-on-Equity-Formula.jpg" alt="Return on Equity">
+                    <div>
+                        <h3>5. Return on Equity (ROE)</h3>
+                        <p>ROE measures a company's profitability by revealing how much profit a company generates with the money shareholders have invested. It is calculated by dividing net income by shareholder equity.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="investment-strategies" class="section">
+                <h2>Investment Strategies</h2>
+                <div class="indicator">
+                    <img src="images\educationalresources\investmentStrategies\valueinvesting_definition_0801-7e37a086219548a2b454bf45af4835f4.jpg" alt="Value Investing">
+                    <div>
+                        <h3>Value Investing</h3>
+                        <p>This strategy involves picking stocks that appear to be trading for less than their intrinsic or book value. Value investors seek to buy undervalued stocks and hold them until they reach their true value.</p>
+                    </div>
+                </div>
+                <div class="indicator">
+                    <img src="images\educationalresources\investmentStrategies\growthstock.asp-final-5cea3410e3db47deb2f7c893329e34ed.png" alt="Growth Investing">
+                    <div>
+                        <h3>Growth Investing</h3>
+                        <p>Growth investing focuses on companies that exhibit signs of above-average growth, even if the share price appears expensive in terms of metrics like P/E or P/S ratios.</p>
+                    </div>
+                </div>
+                <div class="indicator">
+                    <img src="images\educationalresources\investmentStrategies\Dividend-44d29cb374a34b1391ec3d48b08ecab6.jpg" alt="Income Investing">
+                    <div>
+                        <h3>Income Investing</h3>
+                        <p>This strategy focuses on generating income through dividends or interest rather than capital gains. Investors might look for stocks with a high dividend yield or bonds that provide regular interest payments.</p>
+                    </div>
+                </div>
+                <div class="indicator">
+                    <img src="images\educationalresources\investmentStrategies\index.png" alt="Index Investing">
+                    <div>
+                        <h3>Index Investing</h3>
+                        <p>Index investing involves buying a small portion of all stocks in an index (e.g., S&P 500) to mirror its performance. This strategy provides diversification and is generally lower in cost.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="financial-news" class="section">
+                <h2>Financial News</h2>
+                <p>For more stock market related news, regulations and investor support refer to the links on the bottom of the page. If you have any questions or feedback feel free to join our discord group. Thank you. </p>
+                <img src="images\educationalresources\financialNews\financial news.jpg" style="width: 50%;">
+                
             </div>
         </div>
-        
-        <h2>Additional Resources</h2>
+    </main>
+    <footer>
         <div class="resource-links">
             <a href="https://www.investopedia.com/" target="_blank" class="resource-link">
                 <img src="images/educationalresources/icons/Investopedia_Logo.svg.png" alt="Investopedia Icon">
@@ -284,9 +328,16 @@
             </a>
             
         </div>
-    </main>
-    <footer>
-        <p>&copy; 2024 TugaStreetBets. All rights reserved.</p>
+        <p>&copy; 2024 Tuga Street Bets | All Rights Reserved</p>
     </footer>
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+        }
+    </script>
 </body>
 </html>
