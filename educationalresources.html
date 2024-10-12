@@ -103,13 +103,18 @@
         }
 
         .sidebar ul li a {
-            color: #c9d1d9;
+            color: #fff;
             text-decoration: none;
-            transition: color 0.3s;
+            display: block; /* Changed to block-level for easier tapping */
+            padding: 10px; /* Added padding for better spacing */
+            border-radius: 5px; /* Added rounded corners */
+            background-color: #1d232c; /* Background color for links */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+            transition: background-color 0.3s; /* Smooth transition effect */
         }
 
         .sidebar ul li a:hover {
-            color: #58a6ff;
+            background-color: #666; /* Background color change on hover */
         }
 
         /* Content */
@@ -147,7 +152,7 @@
         }
 
         .indicator img:hover {
-            transform: scale(1.05);
+            transform: scale(1.018);
         }
 
         p, ul {
@@ -201,15 +206,49 @@
         .resource-link:hover img {
             transform: scale(1.05); /* Scale the logo up on hover */
             filter: drop-shadow(0 0 3px #2E8B57) drop-shadow(0 0 8px #2E8B57); /* Glowing effect that follows the shape */
-  }
+        }
 
         .resource-link:hover {
             transform: translateY(-3px); /* Subtle hover effect */
             transition: transform 0.3s ease;
         }
         .hidden {
-    display: none;
-}
+            display: none;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            main {
+                flex-direction: column; /* Stack sidebar and content on mobile */
+            }
+
+            .sidebar {
+                margin-right: 0; /* Remove margin on mobile */
+                margin-bottom: 20px; /* Add space below sidebar */
+            }
+
+            .sidebar ul li a {
+                font-size: 1.2em; /* Increase font size for mobile links */
+            }
+
+            .indicator {
+                flex-direction: column; /* Stack image and text vertically */
+                align-items: flex-start; /* Align text to the start */
+            }
+
+            .indicator img {
+                width: 100%; /* Set image to full width on mobile */
+                height: auto; /* Maintain aspect ratio */
+            }
+
+            h2 {
+                font-size: 1.5em; /* Adjust heading size for mobile */
+            }
+
+            footer {
+                font-size: 0.9em; /* Slightly smaller font for footer on mobile */
+            }
+        }
     </style>
 </head>
 <body>
@@ -309,8 +348,7 @@
             
             <div id="financial-news" class="section">
                 <h2>Financial News</h2>
-                <p>For more stock market related news, regulations and investor support refer to the links on the bottom of the page. If you have any questions or feedback feel free to join our discord group. Thank you. </p>
-                <img src="images\educationalresources\financialNews\financial news.jpg" style="width: 50%;">
+                <p>For more stock market related news/articles or even information regarding regulations and investor support refer to the links on the bottom of the page.</p><p> If you have any questions or feedback feel free to join our discord group. Thank you. </p>
                 
             </div>
         </div>
