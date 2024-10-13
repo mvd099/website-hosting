@@ -99,6 +99,15 @@
         }
 
  /* Sidebar */
+    .hamburger {
+            font-size: 30px;
+            cursor: pointer;
+            
+        }
+
+        .sidebar.hidden {
+            display: none; /* Hide sidebar when inactive */
+        }
         .sidebar {
             flex: 0.5;
             margin-right: 20px;
@@ -227,9 +236,10 @@
             transform: translateY(-3px); /* Subtle hover effect */
             transition: transform 0.3s ease;
         }
-        .hidden {
-    display: none;
-}
+                .hidden {
+            display: none;
+        }
+        
 
         /* Mobile Styles */
         @media (max-width: 768px) {
@@ -237,10 +247,18 @@
                 flex-direction: column; /* Stack sidebar and content on mobile */
             }
 
-            .sidebar {
-                margin-right: 0; /* Remove margin on mobile */
-                margin-bottom: 20px; /* Add space below sidebar */
+            .hamburger {
+                display: block; /* Show hamburger on small screens */
             }
+            
+            .sidebar {
+                margin: 0; /* No margin for mobile */
+                display: none; /* Initially hide sidebar */
+            }
+            
+    .sidebar.active {
+        display: block; /* Show sidebar when active */
+    }
 
             .sidebar ul li a {
                 font-size: 1.2em; /* Increase font size for mobile links */
@@ -275,10 +293,11 @@
             </ul>
         </nav>
     </header>
+
     <main>
-        <div class="sidebar">
-            <button class="main-toggle" onclick="toggleSidebarButtons()">Categories</button>
-            <ul class="hidden"> <!-- Initially hidden -->
+        <div class="hamburger" onclick="toggleSidebar()">&#9776;</div>
+        <div class="sidebar hidden" id="sidebar">
+            <ul>
                 <li><a href="#key-indicators" onclick="showSection('key-indicators')">Key Indicators</a></li>
                 <li><a href="#investment-strategies" onclick="showSection('investment-strategies')">Investment Strategies</a></li>
                 <li><a href="#financial-news" onclick="showSection('financial-news')">Financial News</a></li>
@@ -388,9 +407,10 @@
         <p>&copy; 2024 TugaStreetBets | All Rights Reserved</p>
     </footer>
     <script>
-          function toggleSidebarButtons() {
-        const sidebar = document.querySelector('.sidebar ul');
-        sidebar.classList.toggle('hidden');
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('active');
+        sidebar.classList.toggle('hidden'); // Toggle visibility
     }
 
     // Keeping your 'showSection' functionality intact
