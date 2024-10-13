@@ -81,8 +81,24 @@
             flex-grow: 1;
             display: flex;
         }
+                
+        .main-toggle {
+            background-color:#0d1117;
+            color:  #58a6ff;
+            border: solid;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            
+        }
 
-        /* Sidebar */
+        .main-toggle:hover {
+            background-color: #1d232c;
+        }
+
+ /* Sidebar */
         .sidebar {
             flex: 0.5;
             margin-right: 20px;
@@ -116,7 +132,6 @@
         .sidebar ul li a:hover {
             background-color: #666; /* Background color change on hover */
         }
-
         /* Content */
         .content {
             flex: 3;
@@ -213,8 +228,8 @@
             transition: transform 0.3s ease;
         }
         .hidden {
-            display: none;
-        }
+    display: none;
+}
 
         /* Mobile Styles */
         @media (max-width: 768px) {
@@ -262,11 +277,12 @@
     </header>
     <main>
         <div class="sidebar">
-            <h3>Categories</h3>
-            <ul>
+            <button class="main-toggle" onclick="toggleSidebarButtons()">Categories</button>
+            <ul class="hidden"> <!-- Initially hidden -->
                 <li><a href="#key-indicators" onclick="showSection('key-indicators')">Key Indicators</a></li>
                 <li><a href="#investment-strategies" onclick="showSection('investment-strategies')">Investment Strategies</a></li>
                 <li><a href="#financial-news" onclick="showSection('financial-news')">Financial News</a></li>
+                <!-- Keep all your original href links here -->
             </ul>
         </div>
         <div class="content">
@@ -372,6 +388,17 @@
         <p>&copy; 2024 TugaStreetBets | All Rights Reserved</p>
     </footer>
     <script>
+          function toggleSidebarButtons() {
+        const sidebar = document.querySelector('.sidebar ul');
+        sidebar.classList.toggle('hidden');
+    }
+
+    // Keeping your 'showSection' functionality intact
+    function showSection(sectionId) {
+        // Logic to display the specific section on the page
+        const section = document.getElementById(sectionId);
+        section.scrollIntoView({ behavior: 'smooth' });
+    }
         document.addEventListener("DOMContentLoaded", function() {
             const sections = document.querySelectorAll('.section');
             sections.forEach((section, index) => {
