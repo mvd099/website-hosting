@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Market Heatmap | TugaStreetBets</title>
+  <link rel="stylesheet" href="style.css"> <!-- Link to your main CSS file -->
+  <style>
+     body {
+      background-color: #0e0e10; /* Darker background */
+      color: #d1d1d1; /* Light gray text */
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    nav {
+            display: flex;
+            justify-content: center; /* Center the nav items */
+            align-items: center;
+            background-color: #0d1117;
+              }
+
+            nav ul {
+                padding: 0;
+                list-style: none;
+                margin-top: 10px;
+                display: flex; /* Use flexbox for ul */
+            }
+
+            nav ul li {
+                margin: 0 20px;
+            }
+            
+            nav ul li a {
+                color: #58a6ff;
+                text-decoration: none;
+                font-weight: bold;
+                transition: color 0.3s;
+            }
+
+            nav ul li a:hover {
+                color: #c9d1d9; /* Use lighter shade on hover */
+            }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+      color: #d1d1d1;
+    }
+
+    footer {
+      background-color: #1a1a1d;
+      padding: 10px 0;
+      text-align: center;
+      color: #ffffff;
+      font-size: 0.9em;
+      width: 100%;
+    }
+
+    h1 {
+      color: #76c7c0; /* Accent color */
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    .tradingview-widget-container {
+      width: 100%;
+      height: calc(100vh - 180px); /* Adjusted for header and footer height */
+      max-width: 1200px;
+      margin-top: 20px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation bar -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="stockscreener.html">Stock Screener</a></li>
+      <li><a href="marketHeatmap.html">Market Insights</a></li>
+      <li><a href="educationalresources.html">Educational Resources</a></li>
+      </ul>
+  </nav>
+
+  <!-- Main content area for the TradingView Widget -->
+  <main>
+    <h1>Market Heatmap</h1>
+    <p>Daily overview of US Market performance (S&P500 Heatmap)</p>
+    
+    <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <div class="tradingview-widget-copyright"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
+  {
+  "exchanges": [],
+  "dataSource": "SPX500",
+  "grouping": "no_group",
+  "blockSize": "market_cap_basic",
+  "blockColor": "change",
+  "locale": "en",
+  "symbolUrl": "",
+  "colorTheme": "dark",
+  "hasTopBar": false,
+  "isDataSetEnabled": false,
+  "isZoomEnabled": true,
+  "hasSymbolTooltip": true,
+  "isMonoSize": false,
+  "width": 1000,
+  "height": 500
+}
+  </script>
+</div>
+<!-- TradingView Widget END -->
+ </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 TugaStreetBets. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
